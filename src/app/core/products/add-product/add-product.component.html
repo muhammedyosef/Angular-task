@@ -1,0 +1,132 @@
+<!-- add Item -->
+<div class=" container">
+  <form class="add-product" #myForm='ngForm'>
+      <div class="add-product__images slider">
+          <div class="add-product__image-actions">
+              <div class="add-product__image-action">
+                  <a href="#"><i class="fas fa-plus-square"></i></a>
+                  <a href="#"><i class="fas fa-edit"></i></a>
+                  <a href="#"><i class="fas fa-trash-alt"></i></a>
+              </div>
+          </div>
+          <div class="slider__items">
+              <div class="slider__item active" style="background-image: url(assets/img/logo-corporate-14.png)"></div>
+              <div class="slider__item" style="background-image: url(assets/img/logo-corporate-14.png)"></div>
+              <div class="slider__item" style="background-image: url(assets/img/logo-corporate-14.png)"></div>
+          </div>
+          <div class="slider__indicators">
+              <span class="slider__indicator active"></span>
+              <span class="slider__indicator"></span>
+              <span class="slider__indicator"></span>
+          </div>
+      </div>
+      <div class="add-product__data">
+          <div class="form-controls">
+              <section class="tabs">
+                  <div class="tabs__headers">
+                      <div class="tabs__header active">
+                          English
+                      </div>
+                      <div class="tabs__header">
+                          Arabic
+                      </div>
+                  </div>
+                  <div class="tabs__bodies">
+                      <div class="tabs__body active">
+                          <div class="form-group invalid">
+                              <label for="">Name</label>
+                              <input #txtinput [(ngModel)]="product.data[0].name" class="form-control" type="text" name="nameInputField" id="">
+                          </div>
+                          <div class="form-group">
+                              <label for="">Description</label>
+                              <textarea #descinput [(ngModel)]="product.data[0].description" class="form-control" name="desinputField" id="" cols="30" rows="4"></textarea>
+                          </div>
+                      </div>
+                      <!-- <div class="tabs__body ">
+                          <div class="form-group invalid">
+                              <label for="">Name</label>
+                              <input class="form-control" type="text" name="" id="">
+                          </div>
+                          <div class="form-group">
+                              <label for="">Description</label>
+                              <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                          </div>
+                      </div> -->
+                  </div>
+              </section>
+
+              <div class="form-group">
+                  <label for="">Price</label>
+                  <input [(ngModel)]="product.price" class="form-control" type="text" name="priceInput" id="">
+              </div>
+              <div class="add-product__discount">
+                  <div class="form-group">
+                      <label for="">Satus</label>
+                      <div class="form-group__radios">
+                          <div class="form-group__radio"><input ngModel #RadioButton="ngModel" type="radio" name="saleRadio" [value]="true" id=""><span>On Sale</span></div>
+                          <div class="form-group__radio"><input ngModel #RadioButton="ngModel" type="radio" name="saleRadio" [value]="false" id=""><span>Not On Sale</span></div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="">Discount</label>
+                      <input [disabled]="!RadioButton.value" [(ngModel)]="product.discount" class="form-control" type="text" name="DiscountInput" id="">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="">Payment Types</label>
+                  <div class="form-group__checkboxs">
+                      <div class="form-group__checkbox" *ngFor="let pay of pymentType; let i =index"><input ngModel type="checkbox" [name]="'check_'+i" id=""><span>{{pay.name}}</span></div>
+                      <!-- <div class="form-group__checkbox"><input type="checkbox" name="" id=""><span>Cheque Payment</span></div>
+                      <div class="form-group__checkbox"><input type="checkbox" name="" id=""><span>Paypal</span></div>
+                      <div class="form-group__checkbox"><input type="checkbox" name="" id=""><span>Visa</span></div>
+                      <div class="form-group__checkbox"><input type="checkbox" name="" id=""><span>Mastercard</span></div>
+                      <div class="form-group__checkbox"><input type="checkbox" name="" id=""><span>On Dilivery</span></div> -->
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="">Category</label>
+                  <select class="form-control" [(ngModel)]="product.categoryId" name="category" id="">
+                      <option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</option>
+
+                  </select>
+              </div>
+
+              <div class="taged-textbox form-group">
+                  <label class="taged-textbox__lable" for="">Tags</label>
+                  <div class="taged-textbox__data">
+                      <div class="taged-textbox__tags">
+                          <div class="taged-textbox__tag" *ngFor="let t of tag"><span>{{t.name}}</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <!-- <div class="taged-textbox__tag"><span>tag2</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag3</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag4</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag5</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag6</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag7</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag8</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag9</span><a href="#" class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div>
+                          <div class="taged-textbox__tag"><span>tag10</span><a class="taged-textbox__remove"><i
+                                      class="fas fa-times"></i></a></div> -->
+                      </div>
+                      <div class="taged-textbox__clear">
+                          <a href="#"><i class="fas fa-times"></i></a>
+                      </div>
+                  </div>
+                  <input #taginput ngModel (change)="ontagAdded(taginput)" class="taged-textbox__textbox form-control" type="text" name="tag" id="">
+              </div>
+              <div class="add-product__actions">
+                  <button href="#" class="btn btn--gray">Cancel</button>
+                  <button routerLink="/home" class="btn btn--primary" (click)="onSubmit(myForm)">{{isEditMode ? 'Edit' : 'Add'}}</button>
+              </div>
+          </div>
+      </div>
+  </form>
+</div>
